@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <!-- <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand :to="{ name: 'main' }">Superliga Vue</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
@@ -21,48 +21,48 @@
         </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
-    </b-navbar>
+    </b-navbar> -->
+    <NavBar />
     <router-view />
   </div>
 </template>
 
 <script>
-export default {
-  name: "App",
-  methods: {
-    Logout() {
-      this.$root.store.logout();
-      this.$root.toast("Logout", "User logged out successfully", "success");
-
-      this.$router.push("/").catch(() => {
-        this.$forceUpdate();
-      });
-    }
-  }
-};
+  import NavBar from "./components/NavBar"
+  export default {
+    name: "App",
+    components: {
+      NavBar,
+    },
+  };
 </script>
 
 <style lang="scss">
-@import "@/scss/form-style.scss";
+  @import "@/scss/form-style.scss";
+  #app {
+    font-family: Tahoma, Geneva, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+  }
 
-#app {
-  // font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  min-height: 100vh;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  #app::before {
+    content: "";
+    display: block;
+    position: absolute;
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: url("https://img.playbuzz.com/image/upload/ar_1.8867924528301887,c_crop/q_auto:good,f_auto,fl_lossy,w_640,c_limit,dpr_1/v1537461819/sfbrtk5qop9k1uqq0jlp.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+  }
 </style>
