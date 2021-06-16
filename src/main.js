@@ -31,7 +31,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin, 
-  InputGroupPlugin
+  //InputGroupPlugin
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -44,7 +44,7 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin, 
-  InputGroupPlugin
+ // InputGroupPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 
@@ -70,13 +70,13 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
+axios.defaults.withCredentials = true;
 Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
 
 const shared_data = {
-  BASE_URL: "http://localhost:8080",
+  BASE_URL: "http://localhost:3004",
   username: localStorage.username,
   //username: "hilla",
 
