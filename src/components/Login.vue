@@ -94,7 +94,7 @@ export default {
     async Login() {
       try {
         const response = await this.axios.post(
-          this.$root.store.BASE_URL + "/login",
+          this.$root.store.BASE_URL + "/Login",
           {
             username: this.form.username,
             password: this.form.password
@@ -114,13 +114,13 @@ export default {
       }
     },
     onLogin() {
-      // console.log("login method called");
+      console.log("login method called");
       this.form.submitError = undefined;
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
       }
-      // console.log("login method go");
+      console.log("login method go");
 
       this.Login();
     }
