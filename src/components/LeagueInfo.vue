@@ -34,10 +34,10 @@
         :stage="g.stage" 
         :key="g.id"></GamePreview> -->
 
-
       </b-card-text>
-      <b-button href="#" variant="primary">Go somewhere</b-button>
-    </b-card>
+      <!-- <b-button href="#" v:on-click variant="CurreGames">All Games In Stage</b-button> -->
+        <b-button :to="{ name: 'currentGames' }">All Games In Stage</b-button>
+      </b-card>
   </div>
 </template>
 
