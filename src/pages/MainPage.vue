@@ -36,7 +36,7 @@
 import LeagueInfo from "../components/LeagueInfo";
 import ThreeFavoriteGames from "../components/ThreeFavoriteGames";
 //import LoginPage from "../pages/LoginPage";
-import Login from "../components/Login"
+import Login from "../components/Login" 
 export default {
   components: {
     LeagueInfo,
