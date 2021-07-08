@@ -28,6 +28,14 @@ const routes = [
     component: () => import("./pages/SearchPage")
   },
   {
+    path: "/favorite",
+    name: "favorite",
+    component: () => import("./pages/FavoritePage"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound

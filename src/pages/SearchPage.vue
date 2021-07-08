@@ -22,10 +22,20 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 #search-input {
   margin-left: 20px; 
   width: 500px; 
+}
+.title{
+    background: url("https://ae01.alicdn.com/kf/HTB1PlSmirorBKNjSZFjq6A_SpXa6/Laeacco.jpg_q50.jpg");
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    text-align: center;
+    font-family:"Trebuchet MS", Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
 }
 </style>

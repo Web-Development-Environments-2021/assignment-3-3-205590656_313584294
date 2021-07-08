@@ -76,7 +76,7 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
-  BASE_URL: "http://localhost:3004",
+  BASE_URL: "http://localhost:4000",
   username: localStorage.username,
   //username: "hilla",
 

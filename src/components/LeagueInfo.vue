@@ -56,7 +56,8 @@ export default {
       console.log("response");
       try {
         const response = await this.axios.get(
-        this.$root.store.BASE_URL + "/league/getDetails",
+        //this.$root.store.BASE_URL + "/league/getDetails",
+        "http://localhost:4000/league/getDetails",
         );
           
         let info = response.data;
