@@ -35,7 +35,7 @@
       NavBar,
     },
   };
-</script>
+</script> 
 
 <style lang="scss">
   @import "@/scss/form-style.scss";

@@ -2,11 +2,11 @@
   <div>
     <GamePreview
       v-for="g in games"
-      :id="g.id" 
+      :id="g.game_id" 
       :hostTeam="g.home_team" 
       :guestTeam="g.away_team" 
       :date="g.date" 
-      :hour="g.time" 
+      :time="g.time" 
       :key="g.id"></GamePreview>
   </div>
 </template>
@@ -22,18 +22,18 @@ export default {
     return {
       games: [],
       //   {
-      //     id:25,
-      //     hostTeam: "Maccabi Tel-Aviv",
-      //     guestTeam: "Hapoel Beer-Sheva",
+      //     game_id:25,
+      //     home_team: "Maccabi Tel-Aviv",
+      //     away_team: "Hapoel Beer-Sheva",
       //     date: "27/5/21",
-      //     hour: "20:00"
+      //     time: "20:00"
       //   },
       //   {
-      //     id:39,
-      //     hostTeam: "Hapoel Tel-Aviv",
-      //     guestTeam: "Maccabi Haifa",
+      //     game_id:39,
+      //     home_team: "Hapoel Tel-Aviv",
+      //     away_team: "Maccabi Haifa",
       //     date: "29/5/21",
-      //     hour: "20:00"
+      //     time: "20:00"
       //   }
       // ]
     };
@@ -45,7 +45,7 @@ export default {
         const response = await this.axios.get(
             this.$root.store.BASE_URL + "/users/favoriteGames",
         );
-        const games = response.data.games;
+        const games = response.data;
         this.games = [];
         this.games.push(...games);
         console.log(response);
@@ -60,6 +60,6 @@ export default {
     this.updateGames(); 
   }
 };
-</script>
+</script> 
 
 <style></style>

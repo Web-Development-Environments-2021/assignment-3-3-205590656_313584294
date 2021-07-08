@@ -7,7 +7,7 @@
       <li> host: {{ hostTeam }}</li>
       <li> guest: {{ guestTeam }}</li>
       <li> date: {{ date }}</li>
-      <li> time: {{ hour }}</li>
+      <li> time: {{ time }}</li>
     </ul>
   </div>
 </template>
@@ -32,7 +32,7 @@ export default {
         type: String,
         required: true
       },
-      hour: {
+      time: {
         type: String,
         required: true
       }

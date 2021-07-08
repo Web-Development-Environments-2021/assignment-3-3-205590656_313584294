@@ -13,7 +13,7 @@
             <Login />
           </div>
           <div v-else>
-            <FavoriteGames></FavoriteGames>
+            <ThreeFavoriteGames></ThreeFavoriteGames>
             <!-- <RecipePreviewList title="Last Watched Recipes:" pageType="lastSeen"
               :class="{
                 RandomRecipes: true,
@@ -34,30 +34,30 @@
 
 <script>
 import LeagueInfo from "../components/LeagueInfo";
-import FavoriteGames from "../components/FavoriteGames";
+import ThreeFavoriteGames from "../components/ThreeFavoriteGames";
 //import LoginPage from "../pages/LoginPage";
 import Login from "../components/Login"
 export default {
   components: {
     LeagueInfo,
     Login, 
-    FavoriteGames
+    ThreeFavoriteGames
   }
 };
 </script>
 
 <style lang="scss" scoped>
-// .RandomRecipes {
-//   margin: 10px 0 10px;
-// }
-// .blur {
-//   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
-//   filter: blur(2px);
-// }
-// ::v-deep .blur .recipe-preview {
-//   pointer-events: none;
-//   cursor: default;
-// }
+.RandomRecipes {
+  margin: 10px 0 10px;
+}
+.blur {
+  -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+  filter: blur(2px);
+}
+::v-deep .blur .recipe-preview {
+  pointer-events: none;
+  cursor: default;
+}
 .title{
     background: url("https://ae01.alicdn.com/kf/HTB1PlSmirorBKNjSZFjq6A_SpXa6/Laeacco.jpg_q50.jpg");
     color: white;
