@@ -4,7 +4,9 @@
      <b-container class="bv-example-row">
       <b-row>
         <b-col>
-            <FavoriteGames></FavoriteGames>
+            <FavoriteGames>
+                
+            </FavoriteGames>
         </b-col>
       </b-row>
     </b-container>
@@ -16,6 +18,7 @@
   export default {
     components: {FavoriteGames}
   };
+
 </script>
 
 <style lang="scss" scoped>
