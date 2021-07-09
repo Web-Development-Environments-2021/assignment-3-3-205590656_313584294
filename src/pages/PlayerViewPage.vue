@@ -49,8 +49,8 @@ export default {
             { withCredentials: true }
           );
           _player = response.data[0];
-       
-
+        console.log("eeeeeeeeeeeeeeeee");
+        console.log(_player);
         //update local storage
         if (localStorage.lastSearch) {
           var players = JSON.parse(localStorage.lastSearch);
