@@ -3,15 +3,18 @@
     <b-row>
         <b-col>
             <h2>Past Games</h2>
-            <GamePreview
+            <PastGamePreview
             v-for="g in p_games"
             :id="g.game_id" 
             :hostTeam="g.home_team" 
             :guestTeam="g.away_team" 
             :date="g.date" 
-            :time="g.time" 
+            :time="g.time"
+            :result="g.result"
+            :event="g.event"
             :key="g.id">
-            </GamePreview>  
+            </PastGamePreview> 
+
         </b-col>
         <b-col>
             <h2>Future Games</h2>
@@ -32,15 +35,18 @@
 
 <script>
 import GamePreview from "./GamePreview.vue";
+import PastGamePreview from "./PastGamePreview.vue"
 export default {
   name: "AllGames",
   components: {
-    GamePreview
+    GamePreview,
+    PastGamePreview
   }, 
   data() {
     return {
       p_games: [],
       f_games:[],
+      event:[],
     };
   },
   methods: {
@@ -53,6 +59,8 @@ export default {
         const games = response.data;
         this.p_games = [];
         this.p_games.push(...games);
+        this.event=[];
+        this.event.push(...games.event)
         console.log(response);
       } catch (error) {
         console.log("error in update games")

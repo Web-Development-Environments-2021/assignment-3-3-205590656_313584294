@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="game-preview">
     <div :title="id" class="game-title">
       <b>Game Id:</b> {{ id }}
@@ -35,7 +35,7 @@ export default {
       time: {
         type: String,
         required: true
-      }
+      },
   }, 
   mounted(){
     console.log("game preview mounted")
