@@ -1,18 +1,32 @@
 <template>
   <div class="container">
-       <h1 class="title">{{ player.name }}</h1> 
-       <PlayerPreviewList
-            pageType="search"
-            :playersList="player"
-            class="SearchRecipes" 
-          />
-    <div v-if="player">
+    <div v-if="player" >
       <div class="header">
-        <h1 class="title">{{ player.name }}</h1> 
+        <h1 class="title" >{{ player.name }}</h1> 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <img :src="player.image" class="center" />
-        <br />
+        <div class="center">
+            <br/>
+            Team: {{ player.team_name }}
+            <br/>
+            Position: {{ player.position }}
+            <br/>
+            Common Name: {{ player.common_name }}
+            <br />
+            Nationality: {{ player.nationality }}
+            <br/>
+            Birthdate: {{ player.birthdate }}
+            <br/>
+            Birthcountry: {{ player.birthcountry }}
+            <br/>   
+            Height: {{ player.height }}
+            <br />
+            Weight: {{ player.weight }}
+             
+       </div>
+        <br />  <br />
       </div>
+       <br />  <br />
       <div class="player-body">
  
        
@@ -22,11 +36,10 @@
 </template>
 
 <script>
-import PlayerPreviewList from '../components/PlayerPreviewList.vue';
+
 export default {
-    name: PlayerViewPage,
   components: {
-    PlayerPreviewList,
+    
   },
   data() {
     return {
@@ -42,10 +55,11 @@ export default {
     async created() {
       try {
         let _player;
+        console.log("eeeeeeeeeeeeeeeee");
           const response = await this.axios.get(
             this.$root.store.BASE_URL +
-              "/players/fullPlayerInfo/ids/" +
-              this.$route.params.playerId,
+              "/players/fullPlayerInfo/ids/[" +
+              this.$route.params.playerId+"]",
             { withCredentials: true }
           );
           _player = response.data[0];
@@ -77,6 +91,10 @@ export default {
 <style scoped>
 .header {
   font-family: Impact, Charcoal, sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
 .wrapper {
   display: flex;
@@ -93,19 +111,13 @@ export default {
   margin-right: auto;
   width: 50%;
 }
-.table {
+.header {
   background-color: gainsboro;
   border-style: groove;
   border-radius: 5px;
   padding: 2px;
 }
-.vegetarian {
-  width: 52px;
-}
-.vegan {
-  width: 50px;
-}
-.gluten {
-  width: 54px;
+h1 {
+    text-align:center;
 }
 </style>
