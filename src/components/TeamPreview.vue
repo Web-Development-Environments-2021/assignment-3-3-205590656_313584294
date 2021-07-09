@@ -5,12 +5,12 @@
       <router-link
         :to="{
           name: 'team',
-          params: { teamId: team.id, likes: team.aggregateLikes },
+          params: { teamId: team.id},
         }"
         class="team-preview"
       >
         <b-card-img
-          :src="team.image"
+          :src="team.logo_path"
           img-top
           img-width="180"
           img-height="240"
@@ -19,47 +19,11 @@
         <br />
         <br />
         <br />
-        <b-card-title :title="team.title" class="team-title" style="font-size: 20px">
-          {{ team.title }}
+        <b-card-title :title="team.name" class="team-title" style="font-size: 20px">
+          {{ team.name }}
         </b-card-title>
       </router-link>
-      <b-card-body class="body">
-        <b-card-text>
-          <b-icon-clock-history></b-icon-clock-history>
-          {{ team.readyInMinutes }} min
-          <b-icon-hand-thumbs-up v-if="team.aggregateLikes >= 0"></b-icon-hand-thumbs-up
-          >{{ team.aggregateLikes }}
-        </b-card-text>
-        <!-- <b-card-text>
-            <small v-if="recipe.vegetarian"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558862/Vegetarian-2-512_jzy0lc.png"
-                class="vegetarian"
-              ></b-card-img>
-            </small>
-            <small v-if="recipe.vegan"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558435/100-vegan-2-512_rscngh.png"
-                class="vegan"
-              ></b-card-img>
-            </small>
-            <small v-if="recipe.glutenFree"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
-                class="gluten"
-              ></b-card-img>
-            </small>
-          </b-card-text> -->
-        <b-card-text v-if="this.$root.store.username && team.aggregateLikes >= 0">
-          <small v-if="team.watched" class="h4 mb-2"><b-icon-eye></b-icon-eye></small>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <!-- <AddToFavorites
-              v-if="this.$root.store.username && team.aggregateLikes >= 0"
-              :teamID="team.id"
-              :isSaved="team.saved"
-            ></AddToFavorites> -->
-        </b-card-text>
-      </b-card-body>
+     
     </b-card>
     <!-- </b-card-group>-->
   </div>
@@ -68,14 +32,10 @@
 <script>
 // import AddToFavorites from "../components/AddToFavorites";
 
-import { BIconClockHistory, BIconHandThumbsUp, BIconEye } from "bootstrap-vue";
-
 export default {
   name: "TeamPreview",
   components: {
-    BIconClockHistory,
-    BIconHandThumbsUp,
-    BIconEye,
+
     // AddToFavorites,
   },
   props: {
