@@ -5,14 +5,8 @@
       <slot></slot>
     </h3>
     <b-row>
-      <!-- <div v-if="pageType === 'family'">
-        <b-col v-for="r in recipes" :key="r.id">
-          <FamilyRecipePreview class="recipePreview" :recipe="r" />
-          <br />
-        </b-col>
-      </div> -->
       <div v-if="pageType === 'random'">
-        <b-col v-for="t in teamsList" :key="t.id">
+        <b-col v-for="t in teams" :key="t.id">
           <TeamPreview class="TeamPreview" :team="t" />
           <br />
         </b-col>
@@ -51,6 +45,7 @@ export default {
     },
     teamsList: {
       type: Array,
+      required: true,
     },
   },
 
@@ -102,13 +97,7 @@ export default {
 
             if (this.pageType == "lastSeen") {
               this.$root.store.lastSeenTeams = teams;
-            // } else if (this.pageType == "myrecipes") {
-            //   this.$root.store.myRecipes = recipes;
-            // } else if (this.pageType == "family") {
-            //   this.$root.store.familyRecipes = teams;
-            // } else if (this.pageType == "favorite") {
-            //   this.$root.store.favoriteRecipes = teams;
-            // }
+           
           }
 
           if (this.$root.store.username) {
@@ -129,10 +118,6 @@ export default {
           this.teams = [];
           for (var i = 0; i < teams.length; i++) {
             var currTeam = teams[i];
-            if (teamInfo) {
-              currTeam.watched = teamInfo[currTeam.id].watched;
-              currTeam.saved = teamInfo[currTeam.id].saved;
-            }
             this.teams.push(currTeam);
           }
           //console.log(teams);

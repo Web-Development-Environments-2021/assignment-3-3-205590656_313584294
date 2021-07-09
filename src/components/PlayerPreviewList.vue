@@ -5,14 +5,9 @@
       <slot></slot>
     </h3>
     <b-row>
-      <!-- <div v-if="pageType === 'family'">
-        <b-col v-for="r in recipes" :key="r.id">
-          <FamilyRecipePreview class="recipePreview" :recipe="r" />
-          <br />
-        </b-col>
-      </div> -->
+
       <div v-if="pageType === 'random'">
-        <b-col v-for="p in playersList" :key="p.id">
+        <b-col v-for="p in players" :key="p.id">
           <PlayerPreview class="PlayerPreview" :player="p" />
           <br />
         </b-col>
@@ -51,6 +46,7 @@ export default {
     },
     playersList: {
       type: Array,
+      required: true,
     },
   },
 
@@ -69,7 +65,7 @@ export default {
         let globalPlayers = [];
         if (this.pageType != "random" && this.pageType != "search") {
           var players;
-          let url = "http://localhost:3004/";
+          let url = "http://localhost:4000/";
         //   if (this.pageType == "lastSeen") {
         //     url += "user/last3SeenRecipes";
         //     if (this.$root.store.lastSeenRecipes.length != 0) {
@@ -116,7 +112,7 @@ export default {
             for (var i = 0; i < players.length; i++) {
               players_ids.push(players[i].id);
             }
-            //console.log(players_ids);
+            console.log(players_ids);
             const responsePlayersInfo = await this.axios.get(
               this.$root.store.BASE_URL +
                 "/players/previewPlayerInfo/ids/[" +

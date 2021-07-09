@@ -5,7 +5,7 @@
       <router-link
         :to="{
           name: 'player',
-          params: { playerId: player.id, likes: player.aggregateLikes },
+          params: { playerId: player.player_id },
         }"
         class="player-preview"
       >
@@ -19,46 +19,18 @@
         <br />
         <br />
         <br />
-        <b-card-title :title="player.title" class="player-title" style="font-size: 20px">
-          {{ player.title }}
+        <b-card-title :title="player.name" class="player-title" style="font-size: 20px">
+          {{ player.name }}
         </b-card-title>
       </router-link>
       <b-card-body class="body">
         <b-card-text>
-          <b-icon-clock-history></b-icon-clock-history>
-          {{ player.readyInMinutes }} min
-          <b-icon-hand-thumbs-up v-if="player.aggregateLikes >= 0"></b-icon-hand-thumbs-up
-          >{{ player.aggregateLikes }}
-        </b-card-text>
-        <!-- <b-card-text>
-            <small v-if="recipe.vegetarian"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558862/Vegetarian-2-512_jzy0lc.png"
-                class="vegetarian"
-              ></b-card-img>
-            </small>
-            <small v-if="recipe.vegan"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594558435/100-vegan-2-512_rscngh.png"
-                class="vegan"
-              ></b-card-img>
-            </small>
-            <small v-if="recipe.glutenFree"
-              ><b-card-img
-                src="https://res.cloudinary.com/ddmhcwaul/image/upload/v1594490038/glutenfree_l1cde5.webp"
-                class="gluten"
-              ></b-card-img>
-            </small>
-          </b-card-text> -->
-        <b-card-text v-if="this.$root.store.username && player.aggregateLikes >= 0">
-          <small v-if="player.watched" class="h4 mb-2"><b-icon-eye></b-icon-eye></small>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <!-- <AddToFavorites
-              v-if="this.$root.store.username && player.aggregateLikes >= 0"
-              :playerID="player.id"
-              :isSaved="player.saved"
-            ></AddToFavorites> -->
-        </b-card-text>
+            Player ID : {{ player.player_id }} </b-card-text>
+        <b-card-text>
+            Team : {{ player.team_name }} </b-card-text>
+            <b-card-text>
+            Position : {{ player.position }} </b-card-text>
+        
       </b-card-body>
     </b-card>
     <!-- </b-card-group>-->
@@ -66,17 +38,10 @@
 </template>
 
 <script>
-// import AddToFavorites from "../components/AddToFavorites";
-
-import { BIconClockHistory, BIconHandThumbsUp, BIconEye } from "bootstrap-vue";
-
 export default {
   name: "PlayerPreview",
   components: {
-    BIconClockHistory,
-    BIconHandThumbsUp,
-    BIconEye,
-    // AddToFavorites,
+
   },
   props: {
     player: {
@@ -114,13 +79,13 @@ export default {
   background-size: cover;
 }
 
-.player-preview .player-footer {
+.player-preview  {
   width: 100%;
   height: 50%;
   overflow: hidden;
 }
 
-.player-preview .player-footer .player-title {
+.player-preview  .player-title {
   padding: 10px 10px;
   width: 100%;
   font-size: 12pt;
@@ -131,7 +96,7 @@ export default {
   text-overflow: ellipsis;
 }
 
-.player-preview .player-footer ul.player-overview {
+.player-preview ul.player-overview {
   padding: 5px 10px;
   width: 100%;
   display: -webkit-box;
@@ -150,7 +115,7 @@ export default {
   margin-bottom: 0px;
 }
 
-.player-preview .player-footer ul.player-overview li {
+.player-preview  ul.player-overview li {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -165,15 +130,6 @@ export default {
 .body {
   font-size: 17px;
   color: black;
-}
-.vegan {
-  width: 45px;
-}
-.vegetarian {
-  width: 45px;
-}
-.gluten {
-  width: 50px;
 }
 .button {
   font-size: 16px;
