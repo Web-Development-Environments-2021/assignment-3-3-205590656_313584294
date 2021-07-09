@@ -44,6 +44,14 @@ const routes = [
     },
   },
   {
+    path: "/manageLeague",
+    name: "manageLeague",
+    component: () => import("./pages/ManageLeaguePage"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound

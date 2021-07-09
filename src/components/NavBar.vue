@@ -19,7 +19,15 @@
                     <b-icon icon="receipt"></b-icon>About
                 </router-link>
             </b-nav-item>
-            
+            <!--  Manage League  -->
+            <b-nav-item class="nav2">
+                <span v-if="$root.store.username=='nicoled'"  >
+                        <router-link :to="{ name: 'manageLeague' }">
+                            <b-icon icon="pencil-square"></b-icon>Manage League
+                        </router-link>
+                </span>
+            </b-nav-item>
+
             <b-navbar-nav class="ml-auto" right>
                 <!--  for guest  -->
                 <span v-if="!$root.store.username">
@@ -52,6 +60,7 @@
                             <b-dropdown-item active @click="Logout">Log Out</b-dropdown-item>
                         </b-dropdown>
                     </b-nav>
+
                 </span>
             </b-navbar-nav>
         </b-nav>
