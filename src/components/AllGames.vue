@@ -35,13 +35,14 @@
 
 <script>
 import GamePreview from "./GamePreview.vue";
-import PastGamePreview from "./PastGamePreview.vue"
+import PastGamePreview from "./PastGamePreview.vue";
+
 export default {
   name: "AllGames",
   components: {
     GamePreview,
     PastGamePreview
-  }, 
+      }, 
   data() {
     return {
       p_games: [],
