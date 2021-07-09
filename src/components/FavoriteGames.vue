@@ -21,21 +21,6 @@ export default {
   data() {
     return {
       games: [],
-      //   {
-      //     game_id:25,
-      //     home_team: "Maccabi Tel-Aviv",
-      //     away_team: "Hapoel Beer-Sheva",
-      //     date: "27/5/21",
-      //     time: "20:00"
-      //   },
-      //   {
-      //     game_id:39,
-      //     home_team: "Hapoel Tel-Aviv",
-      //     away_team: "Maccabi Haifa",
-      //     date: "29/5/21",
-      //     time: "20:00"
-      //   }
-      // ]
     };
   },
   methods: {
