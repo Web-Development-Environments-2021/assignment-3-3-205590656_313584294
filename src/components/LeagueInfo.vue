@@ -25,15 +25,6 @@
         <br/>
         Stage: {{ next[0].stage }}
         
-      <!-- <GamePreview
-        v-for="g in next"
-        :homeTeam="g.home_team" 
-        :awayTeam="g.away_team" 
-        :date="g.date" 
-        :time="g.time"
-        :stage="g.stage" 
-        :key="g.id"></GamePreview> -->
-
       </b-card-text>
       <!-- <b-button href="#" v:on-click variant="CurreGames">All Games In Stage</b-button> -->
         <b-button :to="{ name: 'currentGames' }">All Games In Stage</b-button>
