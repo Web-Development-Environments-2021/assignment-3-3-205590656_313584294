@@ -44,9 +44,10 @@
         style="width: 430px; padding: 5px"
       ></b-form-input>
       <br />
-   
+
       <center>
-        <b-button
+        <div v-if="selected == 'team'">
+ <b-button
           type="button"
           class="btn"
           style="width: 230px; margin-left: auto; margin-right: auto"
@@ -55,6 +56,19 @@
           :disabled="!searchContent.length"
           >Search</b-button
         >
+        </div>
+        <div v-else>
+ <b-button
+          type="button"
+          class="btn"
+          style="width: 230px; margin-left: auto; margin-right: auto"
+          @click="search()"
+          variant="primary"
+          :disabled="!searchContent.length || !searchContent2.length"
+          >Search</b-button
+        >
+        </div>
+       
       </center>
       <br /><br />
       <b-form-group
@@ -81,34 +95,22 @@
           >
         </b-form-select>
       </b-form-group>
-        <div v-if="this.lastSearchTerm && $root.store.username && this.lastSearcType=='player'">
-            <h4>Your last search was: {{ this.lastSearchTerm }} {{ this.lastSearchTerm2 }}</h4>
-          </div>
-          <div v-else-if="this.lastSearchTerm && $root.store.username && this.lastSearcType=='team'">
-            <h4>Your last search was: {{ this.lastSearchTerm }}</h4>
-          </div>
-<!-- 
-          <div v-if="lastSearcType == 'player'">
-            <div v-if="selected == 'player'">
-                    <PlayerPreviewList
-                      title="Results:"
-                      pageType="search"
-                      :playersList="ans"
-                      class="SearchAns"
-                    />
-                  </div>
-          </div>
-          
-          <div v-else-if ="lastSearcType == 'team'">
-            <div v-if="selected == 'team'">
-<TeamPreviewList
-          title="Results:"
-          pageType="search"
-          :teamsList="ans"
-          class="SearchAns"
-        />
-          </div>
-          </div> -->
+      <div
+        v-if="
+          this.lastSearchTerm && $root.store.username && this.lastSearcType == 'player'
+        "
+      >
+        <h4>
+          Your last search was: {{ this.lastSearchTerm }} {{ this.lastSearchTerm2 }}
+        </h4>
+      </div>
+      <div
+        v-else-if="
+          this.lastSearchTerm && $root.store.username && this.lastSearcType == 'team'
+        "
+      >
+        <h4>Your last search was: {{ this.lastSearchTerm }}</h4>
+      </div>
       <div v-if="selected == 'player' && lastSearcType == 'player'">
         <PlayerPreviewList
           title="Results:"
@@ -180,7 +182,7 @@ export default {
       lastSearch: "",
       lastSearchTerm: "",
       lastSearchTerm2: "",
-      lastSearcType:"",
+      lastSearcType: "",
     };
   },
   mounted() {
@@ -199,8 +201,7 @@ export default {
         } else {
           if (localStorage.lastSearch) {
             localStorage.removeItem("lastSearch");
-            this.lastSearcType="";
-            
+            this.lastSearcType = "";
           }
         }
       } catch (err) {
@@ -244,13 +245,13 @@ export default {
           );
         } else if (this.selected == "team") {
           this.lastSearcType = this.selected;
-         // this.lastSearchTerm2="";
+          // this.lastSearchTerm2="";
           response = await this.axios.get(
             this.$root.store.BASE_URL +
               "/search/queryTeam/nameTeam/" +
               this.searchContent,
             {
-                params: {
+              params: {
                 searchQuery: this.searchContent,
               },
             }
@@ -274,7 +275,7 @@ export default {
             );
           } else {
             responseAnsInfo = await this.axios.get(
-              this.$root.store.BASE_URL + "/teams/previewTeamInfo/ids/[" + ans_ids + "]",
+              this.$root.store.BASE_URL + "/teams/previewTeamInfo/ids/[" + ans_ids + "]"
             );
           }
           var ansInfo = responseAnsInfo.data;
@@ -288,7 +289,7 @@ export default {
 
         localStorage.setItem("lastSearchTerm", this.searchContent);
         this.lastSearchTerm = this.searchContent;
-      
+
         localStorage.setItem("lastSearch", JSON.stringify(this.ans));
 
         if (this.ans.length == 0) {
@@ -302,14 +303,13 @@ export default {
         this.erroMessage = err.response.data;
         console.log(err.response.data);
       }
-    
     },
     onReset() {
-      this.searchContent="",
-       this.searchContent2="",
-      this.$nextTick(() => {
-        this.$v.$reset();
-      });
+      (this.searchContent = ""),
+        (this.searchContent2 = ""),
+        this.$nextTick(() => {
+          this.$v.$reset();
+        });
     },
     sortby() {
       if (this.sort == "teamByNameTeam") {
