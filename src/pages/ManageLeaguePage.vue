@@ -36,63 +36,63 @@
       </div>
 
       <div>
-         <b-form @reset.prevent="onReset" inline>>
+      <b-form @reset.prevent="onReset" inline>
      
-      <h4>To add a game, fill in the following details: </h4>
+      <h4> To add a game, fill in the following details: </h4>
       <b-form-group>
       <b-form-input
-        id="manage"
+        id="date"
         v-model="date"
         class="mb-2 mr-sm-2 mb-sm-0"
         placeholder="Enter a date"
-        type="manage"
-        list="manage-options-list"
+     
+        list="date-options-list"
         style="width: 230px; padding: 5px"
       ></b-form-input>
        <b-form-input
-        id="manage"
+        id="time"
         v-model="time"
         class="mb-2 mr-sm-2 mb-sm-0"
         placeholder="Enter a time"
-        type="manage"
-        list="manage-options-list"
+     
+        list="time-options-list"
         style="width: 230px; padding: 5px"
       ></b-form-input>
       <b-form-input
-        id="manage"
+        id="home_team"
         v-model="home_team"
         class="mb-2 mr-sm-2 mb-sm-0"
         placeholder="Enter a home_team"
-        type="manage"
-        list="manage-options-list"
+      
+        list="home_team-options-list"
         style="width: 230px; padding: 5px"
       ></b-form-input>
       <br><br>
       <b-form-input
-        id="manage"
+        id="away_team"
         v-model="away_team"
         class="mb-2 mr-sm-2 mb-sm-0"
         placeholder="Enter a away_team"
-        type="manage"
-        list="manage-options-list"
-        style="width: 230px; padding: 5px"
+       
+        list="away_team-options-list"
+        style="away_team: 230px; padding: 5px"
       ></b-form-input>
       <b-form-input
-        id="manage"
+        id="stage"
         v-model="stage"
         class="mb-2 mr-sm-2 mb-sm-0"
         placeholder="Enter a stage"
-        type="manage"
-        list="manage-options-list"
+        
+        list="stage-options-list"
         style="width: 230px; padding: 5px"
       ></b-form-input>
       <b-form-input
-        id="manage"
+        id="referee"
         v-model="referee"
         class="mb-2 mr-sm-2 mb-sm-0"
         placeholder="Enter a referee"
-        type="manage"
-        list="manage-options-list"
+      
+        list="referee-options-list"
         style="width: 230px; padding: 5px"
       ></b-form-input>
       </b-form-group>
@@ -103,10 +103,11 @@
           style="width: 1000px; margin-left: auto; margin-right: auto"
           @click="addGame()"
           variant="primary"
-          :disabled="!manageContent.length"
+          :disabled="!date.length || !time.length || !home_team.length || !away_team.length || !stage.length || !referee.length"
           >Add Game</b-button
         >
         <br><br>
+
    
 
       <b-form-group v-if="noResults" class="empty">
@@ -148,7 +149,6 @@ export default {
       ],
       fields_events: ["event_id", "game_id", "date", "time", "minute", "description"],
       items: [],
-      manageContent: "",
       noResults: false,
       date:"",
       time: "",
@@ -166,7 +166,6 @@ export default {
     async showTable() {
       try {
         var manageAns;
-        console.log(this.manageContent);
         const response = await this.axios.get(
           this.$root.store.BASE_URL + "/league/getLeagueGames"
         );
@@ -185,9 +184,9 @@ export default {
   async addGame() {
       try {
         var manageAns;
-        console.log(this.manageContent);
+        comsole.log("hhhhhhhhhhhhhhhhhhhhhhh");
         const response = await this.axios.post(
-          this.$root.store.BASE_URL + "/league/getLeagueGames",{
+          this.$root.store.BASE_URL + "/league/addGameToLeague",{
             date: this.date,
             time: this.time,
             home_team: this.home_team,
@@ -196,6 +195,7 @@ export default {
             referee: this.referee,
           }
         );
+        comsole.log("hhhhhhhhhhhhhhhhhhhhhhh");
         comsole.log(response);
         manageAns = response.data[0];
         comsole.log(manageAns);
@@ -208,8 +208,6 @@ export default {
         console.log(err.response.data);
       }
     },
-
-  
 };
 </script>
 
