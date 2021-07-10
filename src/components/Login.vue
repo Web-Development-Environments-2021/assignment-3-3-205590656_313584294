@@ -47,6 +47,8 @@
         Do not have an account yet?
         <router-link to="register"> Register in here</router-link>
       </div>
+      <br><br>
+       <div class="alert" v-if="showAlert"><b-alert show dismissible fade variant="danger" class="m-3">{{messAlertRes }}</b-alert></div>
     </b-form>
     <b-alert
       class="mt-2"
@@ -72,7 +74,9 @@ export default {
       form: {
         username: "",
         password: "",
-        submitError: undefined
+        submitError: undefined,
+        showAlert: false,
+      messAlertRes:"",
       }
     };
   },
@@ -93,6 +97,7 @@ export default {
     },
     async Login() {
       try {
+        this.showAlert = false;
         const response = await this.axios.post(
           this.$root.store.BASE_URL + "/Login",
           {
@@ -110,7 +115,10 @@ export default {
         }
       } catch (err) {
         console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        this.showAlert = true;
+        this.messAlertRes = err.response.data;
+        // this.form.submitError = err.response.data.message;
+        alert(this.messAlertRes);
       }
     },
     onLogin() {
@@ -133,5 +141,10 @@ export default {
 }
 .title {
   text-align: center;	
+}
+.alert{
+  width: 100%;
+ text-align: center;
+
 }
 </style>
