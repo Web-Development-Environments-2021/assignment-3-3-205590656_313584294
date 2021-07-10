@@ -315,6 +315,7 @@ export default {
         console.log(response);
       } catch (err) {
         console.log(err.response);
+        alert(err.response);
         // this.form.submitError = err.response.data.message;
       }
     },
@@ -350,7 +351,7 @@ export default {
         console.log(err.response.data);
         this.showAlert = true;
         this.messAlertRes = err.response.data;
-        
+        alert(this.messAlertRes);
         // this.form.submitError = err.response.data.message;
       }
     },
@@ -390,6 +391,7 @@ export default {
         console.log(err.response.data);
         this.showAlert2 = true;
         this.messAlertEvent = err.response.data;
+        alert(this.messAlertEvent);
         
         // this.form.submitError = err.response.data.message;
       }
