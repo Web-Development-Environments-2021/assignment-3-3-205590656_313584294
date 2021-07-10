@@ -7,7 +7,8 @@
       :guestTeam="g.away_team" 
       :date="g.date" 
       :time="g.time" 
-      :key="g.id"></GamePreview>
+      :key="g.id">
+      </GamePreview>
   </div>
 </template>
 
@@ -33,6 +34,10 @@ export default {
         const games = response.data;
         this.games = [];
         this.games.push(...games);
+
+        this.ArrayOfFavorite = localStorage.getItem("ArrayOfFavorite");
+        localStorage.setItem("ArrayOfFavorite", this.games);
+
         console.log(response);
       } catch (error) {
         console.log("error in update games")
@@ -43,7 +48,8 @@ export default {
   mounted(){
     console.log("favorite games mounted");
     this.updateGames(); 
-  }
+  },
+
 };
 </script> 
 

@@ -3,11 +3,13 @@
 <div class="game-preview">
     <div :title="id" class="game-title">
       <b>Game Id:</b> {{ id }}
-      <AddFavorite>
-        v-if="this.$root.store.username >= 0"
-        :gameID="this.id"
-        :isSaved="this.saved"
-      </AddFavorite>
+      <!--Add to favorite show only when user is connect-->
+      <div v-if="$root.store.username">
+        <AddFavorite
+        :gameID="id"
+        :isSaved="false"
+        ></AddFavorite>
+      </div>
     </div>
         <ul class="game-content">
           <li> host: {{ hostTeam }}</li>
