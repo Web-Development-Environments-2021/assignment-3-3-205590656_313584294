@@ -126,15 +126,7 @@ export default {
   font-size: 17px;
   color: black;
 }
-.vegan {
-  width: 45px;
-}
-.vegetarian {
-  width: 45px;
-}
-.gluten {
-  width: 50px;
-}
+
 .button {
   font-size: 16px;
 }
@@ -145,6 +137,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.2);
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
+
 .team-title {
   color: black;
   font-weight: bold;

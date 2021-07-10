@@ -4,24 +4,23 @@
       <!-- <h1 class="title">Team Name: {{ teamName }}</h1> -->
     </div>
     <div>
-      <b-card>
+      <b-card class="container2">
         <b-card-text>
-      
-            <div class="center">
-              <h3 align="center">Players:</h3>
-              <b-carousel
-                id="carousel-1"
-                :interval="4000"
+            <div class="player-preview">
+              <h3 align="center" class="title">Players:</h3>
+              <b-carousel class="carousel-1"
+                :interval="40000"
                 controls
                 indicators
                 background="grey"
-                img-width="1800"
-                img-height="480"
+                img-width="100"
+                img-height="125"
                 style="text-shadow: 1px 1px 2px #555"
                 @sliding-start="onSlideStart"
                 @sliding-end="onSlideEnd"
+    
               >
-                <!-- Text slides with image -->
+       
                 <b-carousel-slide v-for="(p, index) in players" img-blank :key="index">
                   <template>
                     <PlayerPreview class="PlayerPreview" :player="p"/>
@@ -29,14 +28,13 @@
                 </b-carousel-slide>
               </b-carousel>
             </div>
-            <br />
-            <br />
-
         </b-card-text>
       </b-card>
+       <br />
+        <br />
     </div>
-    <div>
-      <h3 align="center">Past Matches:</h3>
+    <div >
+      <h3 align="center" class="title">Past Matches:</h3>
       <b-table :items="past_matches" :fields="fields_past" striped responsive="sm">
         <template #cell(event)="row">
           <b-button size="sm" @click="row.toggleDetails" class="mr-2">
@@ -58,14 +56,9 @@
         </template>
       </b-table>
     </div>
-    <div>
-      <h3 align="center">Future Matches</h3>
+    <div >
+      <h3 align="center" class="title">Future Matches</h3>
       <b-table :items="future_matches" :fields="fields_future" striped responsive="sm">
-        <template #cell(event)="row">
-          <b-button size="sm" @click="row.toggleDetails" class="mr-2">
-            {{ row.detailsShowing ? "Hide" : "Show" }} Events
-          </b-button>
-        </template>
       </b-table>
     </div>
   </div>
@@ -75,16 +68,14 @@
 import PlayerPreview from "../components/PlayerPreview.vue";
 export default {
   components: {
-    PlayerPreview,
+  PlayerPreview,
   },
   data() {
     return {
       teamName: null,
-      players: [],
+      players: {},
       past_matches: [],
       future_matches: [],
-      historyGames: [],
-      FutureGames: [],
       fields_past: [
         "game_id",
         "date",
@@ -132,19 +123,51 @@ export default {
             this.$route.params.teamId
         );
         _players = response.data[0];
-        console.log("eeeeeeeeeeeeeeeee");
-        console.log(_players[0]);
+        console.log("eeeeeeeeeeeeeeeee1");
+        console.log(_players);
+        console.log(_players.players);
         _historyGames = response.data[1];
-        console.log("eeeeeeeeeeeeeeeee");
+        console.log("eeeeeeeeeeeeeeeee2");
         console.log(_historyGames);
         _FutureGames = response.data[2];
         console.log("eeeeeeeeeeeeeeeee");
         console.log(_FutureGames);
         // this.teamName = _players[0].team_name;
         // console.log( this.teamName);
-        this.players = _players;
-        this.historyGames = _historyGames;
-        this.FutureGames = _FutureGames;
+        this.players = {};
+        console.log( _players.players.length);
+        for (var i = 0; i < _players.players.length; i++) {
+            console.log("aaaaaaaaaaaaaaaaaa");
+            console.log(_players.players[i]);
+            let numberObject =  _players.players[i];
+            this.$set( this.players, i, numberObject)
+            console.log(this.players);
+          //this.players.add(_players.players[i].player_id);
+        }
+     
+        console.log("eeeeeeeeeeeeeeeee5");
+        console.log(this.players);
+
+        this.past_matches = [];
+        console.log( _historyGames.historyGames.length);
+        for (var i = 0; i <  _historyGames.historyGames.length; i++) {
+            console.log("AAAAAAAAA");
+           
+            console.log( _historyGames.historyGames[i]);
+            console.log( _historyGames.historyGames[i].home_team);
+            let numberObject = _historyGames.historyGames[i].home_team;
+            if(numberObject== this.$route.params.teamId)
+               this.past_matches.push(_historyGames.historyGames[i]);
+            console.log(this.past_matches);
+        }
+
+
+        // this.past_matches = _historyGames.historyGames;
+        //  console.log("11111111111111");
+        //  console.log(this.past_matches);
+        this.future_matches = _FutureGames.FutureGames;
+        console.log("22222222222222");
+         console.log(this.future_matches);
         //console.log(team);
       } catch (error) {
         //console.log("error.response.status", error.response.status);
@@ -158,35 +181,50 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  font-family: Impact, Charcoal, sans-serif;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+
+.carousel-1 {
+    border-radius: 2px 2px 2px 2px;
+    overflow: hidden;
+    height: 400;
+    width: 100;
+    margin-bottom: 0px;
+    margin-top:0px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
-.wrapper {
-  display: flex;
-  background-color: gainsboro;
-  border-style: groove;
-  border-radius: 5px;
-}
-.wrapped {
-  width: 50%;
-}
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
+
 .header {
   background-color: gainsboro;
   border-style: groove;
   border-radius: 5px;
   padding: 2px;
+} 
+.card {
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  margin-bottom: 0px;
+
 }
-h1 {
+.title {
+  background: url("https://ae01.alicdn.com/kf/HTB1PlSmirorBKNjSZFjq6A_SpXa6/Laeacco.jpg_q50.jpg");
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  text-align: center;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 50px;
+  font-weight: bold;
+}
+.player-preview {
+  width: 500px;
   text-align: center;
 }
+.container2 {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+
+
+}
+
 </style>

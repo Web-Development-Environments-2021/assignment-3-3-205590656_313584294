@@ -13,12 +13,10 @@
           :src="player.image"
           img-top
           img-width="180"
-          img-height="240"
+          img-height="270"
           class="image"
         />
-        <br />
-        <br />
-        <br />
+        
         <b-card-title :title="player.name" class="player-title" style="font-size: 20px">
           {{ player.name }}
         </b-card-title>
@@ -55,18 +53,18 @@ export default {
 <style scoped>
 .player-preview {
   display: inline-block;
-  width: 90%;
-  height: 100%;
+  width: 100%;
+  height: 50%;
   position: relative;
-  margin: 10px 10px;
+  margin: 0px 0px;
 }
 .player-preview > .player-body {
   width: 100%;
-  height: 200px;
+  height:50px;
   position: relative;
 }
 
-.player-preview .player-body .player-image {
+.player-preview  .player-image {
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;
@@ -86,10 +84,10 @@ export default {
 }
 
 .player-preview  .player-title {
-  padding: 10px 10px;
+  padding: 30px 10px;
   width: 100%;
   font-size: 12pt;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   -o-text-overflow: ellipsis;
@@ -97,7 +95,7 @@ export default {
 }
 
 .player-preview ul.player-overview {
-  padding: 5px 10px;
+  padding: 0px 10px;
   width: 100%;
   display: -webkit-box;
   display: -moz-box;
@@ -129,6 +127,7 @@ export default {
 }
 .body {
   font-size: 17px;
+   padding: 0px 0px;
   color: black;
 }
 .button {
