@@ -296,12 +296,20 @@ export default {
         } else {
           this.noResults = false;
         }
+        this.onReset();
       } catch (err) {
         this.noResults = true;
         this.erroMessage = err.response.data;
         console.log(err.response.data);
       }
     
+    },
+    onReset() {
+      this.searchContent="",
+       this.searchContent2="",
+      this.$nextTick(() => {
+        this.$v.$reset();
+      });
     },
     sortby() {
       if (this.sort == "teamByNameTeam") {

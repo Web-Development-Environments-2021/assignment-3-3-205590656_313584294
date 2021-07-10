@@ -13,6 +13,12 @@
                     <b-icon icon="search"></b-icon>Search
                 </router-link>
             </b-nav-item>
+             <!--  cerrent game  -->
+            <b-nav-item class="nav2">
+                <router-link :to="{ name: 'currentGames' }"><b-icon icon="info-circle-fill" scale="1" ></b-icon>
+                   Current Games
+                </router-link>
+            </b-nav-item>
             <!--  about  -->
             <b-nav-item class="nav2">
                 <router-link :to="{ name: 'about' }">

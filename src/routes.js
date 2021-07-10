@@ -49,9 +49,7 @@ const routes = [
     path: "/currentGames",
     name: "currentGames",
     component: () => import("./pages/CurrentGamesPage"),
-    meta: {
-      requiresAuth: true,
-    },
+   
   },
   {
     path: "/manageLeague",
