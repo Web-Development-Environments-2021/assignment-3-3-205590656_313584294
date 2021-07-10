@@ -12,7 +12,7 @@ https://app.swaggerhub.com/apis-docs/barmocha/API_assignment_3.1/1.0.0
 
 ## Screen Shot:
 #### Main Page:
-!(https://github.com/Web-Development-Environments-2021/assignment-3-3-205590656_313584294/blob/main/about.PNG)
+![Main](https://github.com/Web-Development-Environments-2021/assignment-3-3-205590656_313584294/blob/main/about.PNG)
 #### Register Page:
 !(https://github.com/Web-Development-Environments-2021/assignment-3-3-205590656_313584294/blob/main/allGameInLeag.PNG)
 #### Register Error Page:
