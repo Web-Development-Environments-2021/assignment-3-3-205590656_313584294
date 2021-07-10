@@ -1,17 +1,15 @@
 <template>
   <small v-if="!this.saved"
     ><button @click="addToFavorites" class="button" type="button">
-      <b-icon-heart-fill style="color:#A9A9A9"></b-icon-heart-fill></button
+      <b-icon-heart-fill style="color: #a9a9a9"></b-icon-heart-fill></button
   ></small>
-  <small v-else
-    ><b-icon-heart-fill style="color:#FF0000"></b-icon-heart-fill
-  ></small>
+  <small v-else><b-icon-heart-fill style="color: #ff0000"></b-icon-heart-fill></small>
 </template>
 
 <script>
 export default {
-    name: "AddFavorite",
-    data() {
+  name: "AddFavorite",
+  data() {
     return {
       saved: false,
     };
@@ -31,7 +29,7 @@ export default {
     //console.log(this.isSaved);
     this.saved = this.isSaved;
   },
-   methods: {
+  methods: {
     async AddToFavorites() {
       try {
         const post = await this.axios.post(
@@ -43,12 +41,12 @@ export default {
         // this.$root.store.favoriteRecipes = [];
 
         this.saved = true;
-        if(localStorage.lastSearch){
+        if (localStorage.lastSearch) {
           var recipes = JSON.parse(localStorage.lastSearch);
-         for (var i = 0; i < recipes.length; i++) {
-            if(recipes[i].id == this.recipeID){
-              if(this.saved != recipes[i].saved){   
-                recipes[i].saved = this.saved;        
+          for (var i = 0; i < recipes.length; i++) {
+            if (recipes[i].id == this.recipeID) {
+              if (this.saved != recipes[i].saved) {
+                recipes[i].saved = this.saved;
               }
             }
           }
@@ -60,7 +58,7 @@ export default {
         console.log(error.response);
       }
     },
-   },
+  },
 };
 </script>
 
