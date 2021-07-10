@@ -66,21 +66,22 @@ export default {
   height: 300px;
   position: relative;
   margin: 10px 10px;
-  border-style: solid;
+
   border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
+
 }
 
 .game-preview .game-title {
   text-align: center;
   text-transform: uppercase;
-  color:  rgb(111, 197, 157);
+  color: seagreen;
+ font-weight: bold;
 }
 
 .game-preview .game-content {
   width: 100%;
   overflow: hidden;
+  text-align: left;
 }
 
 

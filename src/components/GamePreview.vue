@@ -1,5 +1,6 @@
   <template>
-  <div class="game-preview">
+
+<div class="game-preview">
     <div :title="id" class="game-title">
       <b>Game Id:</b> {{ id }}
       <AddFavorite>
@@ -15,7 +16,9 @@
           <li> time: {{ time }}</li>
         </ul>
        
+
   </div>
+  
 </template>
 
 <script>
@@ -63,16 +66,19 @@ export default {
   height: 200px;
   position: relative;
   margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
+ 
+
+
+   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+   font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.15);
+
 }
 
 .game-preview .game-title {
   text-align: center;
   text-transform: uppercase;
-  color:  rgb(111, 197, 157);
+  color:  darkcyan;
 }
 
 .game-preview .game-content {

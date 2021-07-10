@@ -81,8 +81,35 @@
           >
         </b-form-select>
       </b-form-group>
-
-      <div v-if="selected == 'player'">
+        <div v-if="this.lastSearchTerm && $root.store.username && this.lastSearcType=='player'">
+            <h4>Your last search was: {{ this.lastSearchTerm }} {{ this.lastSearchTerm2 }}</h4>
+          </div>
+          <div v-else-if="this.lastSearchTerm && $root.store.username && this.lastSearcType=='team'">
+            <h4>Your last search was: {{ this.lastSearchTerm }}</h4>
+          </div>
+<!-- 
+          <div v-if="lastSearcType == 'player'">
+            <div v-if="selected == 'player'">
+                    <PlayerPreviewList
+                      title="Results:"
+                      pageType="search"
+                      :playersList="ans"
+                      class="SearchAns"
+                    />
+                  </div>
+          </div>
+          
+          <div v-else-if ="lastSearcType == 'team'">
+            <div v-if="selected == 'team'">
+<TeamPreviewList
+          title="Results:"
+          pageType="search"
+          :teamsList="ans"
+          class="SearchAns"
+        />
+          </div>
+          </div> -->
+      <div v-if="selected == 'player' && lastSearcType == 'player'">
         <PlayerPreviewList
           title="Results:"
           pageType="search"
@@ -90,7 +117,7 @@
           class="SearchAns"
         />
       </div>
-      <div v-else-if="selected == 'team'">
+      <div v-else-if="selected == 'team' && lastSearcType == 'team'">
         <TeamPreviewList
           title="Results:"
           pageType="search"
@@ -98,9 +125,25 @@
           class="SearchAns"
         />
       </div>
+      <div v-else-if="selected == 'player' && lastSearcType == 'team'">
+        <TeamPreviewList
+          title="Results:"
+          pageType="search"
+          :teamsList="ans"
+          class="SearchAns"
+        />
+      </div>
+      <div v-else-if="selected == 'team' && lastSearcType == 'player'">
+        <PlayerPreviewList
+          title="Results:"
+          pageType="search"
+          :playersList="ans"
+          class="SearchAns"
+        />
+      </div>
 
       <b-form-group v-if="noResults" class="empty">
-        <h4>No results returned: {{ erroMessage }}</h4>
+        <h4>No results returned</h4>
       </b-form-group>
     </b-form>
 
@@ -136,10 +179,13 @@ export default {
       ],
       lastSearch: "",
       lastSearchTerm: "",
+      lastSearchTerm2: "",
+      lastSearcType:"",
     };
   },
   mounted() {
     this.lastSearchTerm = localStorage.getItem("lastSearchTerm");
+    this.lastSearchTerm2 = localStorage.getItem("lastSearchTerm2");
     this.loadHistorySearch();
   },
   methods: {
@@ -153,6 +199,8 @@ export default {
         } else {
           if (localStorage.lastSearch) {
             localStorage.removeItem("lastSearch");
+            this.lastSearcType="";
+            
           }
         }
       } catch (err) {
@@ -164,8 +212,7 @@ export default {
         var searchAns;
         let response = "";
         if (this.selected == "player" && this.selected2 == "Group Name") {
-          console.log(this.searchContent);
-          console.log(this.searchContent2);
+          this.lastSearcType = this.selected;
           response = await this.axios.get(
             this.$root.store.BASE_URL +
               "/search/queryPlayer/namePlayer/" +
@@ -181,8 +228,7 @@ export default {
           );
           console.log(response);
         } else if (this.selected == "player" && this.selected2 == "Game Position") {
-          console.log(this.searchContent);
-          console.log(this.searchContent2);
+          this.lastSearcType = this.selected;
           response = await this.axios.get(
             this.$root.store.BASE_URL +
               "/search/queryPlayer/namePlayer/" +
@@ -197,6 +243,8 @@ export default {
             }
           );
         } else if (this.selected == "team") {
+          this.lastSearcType = this.selected;
+         // this.lastSearchTerm2="";
           response = await this.axios.get(
             this.$root.store.BASE_URL +
               "/search/queryTeam/nameTeam/" +
@@ -227,7 +275,6 @@ export default {
           } else {
             responseAnsInfo = await this.axios.get(
               this.$root.store.BASE_URL + "/teams/previewTeamInfo/ids/[" + ans_ids + "]",
-              { withCredentials: true }
             );
           }
           var ansInfo = responseAnsInfo.data;
@@ -241,6 +288,7 @@ export default {
 
         localStorage.setItem("lastSearchTerm", this.searchContent);
         this.lastSearchTerm = this.searchContent;
+      
         localStorage.setItem("lastSearch", JSON.stringify(this.ans));
 
         if (this.ans.length == 0) {
@@ -253,6 +301,7 @@ export default {
         this.erroMessage = err.response.data;
         console.log(err.response.data);
       }
+    
     },
     sortby() {
       if (this.sort == "teamByNameTeam") {

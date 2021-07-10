@@ -1,33 +1,30 @@
 <template>
     <div class="league-preview">
-      <b-card
-      img-alt="Image"
-      tag="article"
-      style="max-width: 20rem;"
-      class="mb-2"
+      <b-card class="card"
+
     >
-      <b-card-title> {{ leagueName }}</b-card-title>
+      <b-card-title class="league-title"> {{ leagueName }}</b-card-title>
       <b-card-text>
-        Season: {{ season }}
+        <b>Season:</b> {{ season }}
         <br/>
-        Stage: {{ stage }}
+         <b>Stage:</b>{{ stage }}
         <br/>
         <br/>        
-        Next Game:
+        <b>Next Game:</b>
         <br/>
-        Home team id: {{ next[0].home_team }}
+       <b> Home team id:</b> {{ next[0].home_team }}
         <br/>        
-        Away team id: {{ next[0].away_team }}
+        <b>Away team id:</b> {{ next[0].away_team }}
         <br/>
-        Date: {{ next[0].date }}
+         <b>Date:</b>{{ next[0].date }}
         <br/>
-        Time: {{ next[0].time }}
+        <b>Time:</b> {{ next[0].time }}
         <br/>
-        Stage: {{ next[0].stage }}
+         <b>Stage:</b>{{ next[0].stage }}
         
-      </b-card-text>
+      </b-card-text >
       <!-- <b-button href="#" v:on-click variant="CurreGames">All Games In Stage</b-button> -->
-        <b-button :to="{ name: 'currentGames' }">All Games In Stage</b-button>
+        <b-button   :to="{ name: 'currentGames' }">All Games In Stage</b-button>
       </b-card>
   </div>
 </template>
@@ -73,26 +70,42 @@ export default {
 
 <style>
 .league-preview {
+  background-color: rgba(0, 0, 0, 0.1);
   display: inline-block;
-  width: 300px;
-  height: 385px;
+  width: 340px;
+  height: 386px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
   border-radius: 10px;
-  border-width: 5px;
-  border-color:rgb(44, 89, 116);
+  border-width: 4px;
+  
 }
 
-.league-preview .league-title {
+ .league-title {
   text-align: center;
   text-transform: uppercase;
-  color:  rgb(111, 155, 197);
+font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.1);
 }
-
+.card {
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
 .league-preview .league-content {
   width: 100%;
   overflow: hidden;
+}
+.project {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-weight: bold;
+  width: 500px;
+  /* border: 2px solid #2c3e50; */
+  padding: 5px;
+    float: left;
 }
 
 </style>

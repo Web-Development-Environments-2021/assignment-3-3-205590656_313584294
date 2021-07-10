@@ -1,8 +1,8 @@
 <template>
   <div>
-    <b-row>
+    <b-row class="center">
         <b-col>
-            <h2>Past Games</h2>
+            <h2 class="center">Past Games</h2>
             <PastGamePreview
             v-for="g in p_games"
             :id="g.game_id" 
@@ -16,7 +16,7 @@
             </PastGamePreview> 
 
         </b-col>
-        <b-col>
+        <b-col class="center">
             <h2>Future Games</h2>
             <GamePreview
             v-for="g in f_games"
@@ -92,4 +92,11 @@ export default {
 };
 </script> 
 
-<style></style>
+<style>
+.center {
+  color: #2c3e50;
+  
+  text-align: center;
+
+}
+</style>
